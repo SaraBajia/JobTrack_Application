@@ -111,7 +111,9 @@ dotnet run
 ### 3. Configurer le frontend
 
 cd frontend
+
 npm install
+
 npm run dev
 
 ### 4. (Optionnel) Lancer avec Docker
