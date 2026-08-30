@@ -117,7 +117,7 @@ npm run dev
 docker-compose up
 
 ## 📁 Organisation du projet
-
+```
 JobTrack_Application/
 │
 ├── backend/
@@ -138,7 +138,7 @@ JobTrack_Application/
 ├── docker-compose.yml
 ├── .gitignore
 └── README.md
-
+```
 ## 🎯 Objectifs du projet
 
 - Centraliser le suivi des candidatures d'emploi dans une interface unique ;
