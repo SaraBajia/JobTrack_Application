@@ -103,7 +103,9 @@ git clone https://github.com/SaraBajia/Jobtrack_Application.git
 ### 2. Configurer le backend
 
 cd backend
+
 dotnet restore
+
 dotnet run
 
 ### 3. Configurer le frontend
