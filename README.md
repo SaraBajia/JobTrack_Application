@@ -1,83 +1,156 @@
-# JobTrack Professional — Full Stack
+# JobTrack Application
 
-A full-stack job and internship tracker built with **React + Vite**, **ASP.NET Core 8**, **MySQL**, **JWT authentication**, and **Entity Framework Core**.
+Application full-stack de suivi des candidatures d'emploi, développée avec **C#/.NET**, **MySQL**, et **React**.
 
-## Features
-- Register and login
-- BCrypt password hashing
-- JWT authentication
-- User-isolated data (each user sees only their own applications)
-- Full CRUD for applications
-- Dashboard, analytics, pipeline and calendar
-- Search and status filtering
-- Interview dates, priority and notes
-- Dark/light mode
-- Responsive interface
-- Swagger API documentation
+## 📌 Description
 
-## Project structure
-- `frontend/` React + Vite
-- `backend/` ASP.NET Core Web API
-- `database/` MySQL SQL script
+JobTrack est une application web permettant aux utilisateurs de gérer et suivre leurs candidatures d'emploi de manière centralisée.
 
----
-## 1. Start MySQL
+Elle offre une interface sécurisée (authentification JWT) et un tableau de bord clair pour suivre l'évolution de chaque candidature.
 
-### Option A — MySQL Workbench
-Create/import the database using `database/jobtrack_mysql.sql`.
+## ✨ Fonctionnalités
 
-Update `backend/appsettings.json`:
-```json
-"DefaultConnection":"server=localhost;port=3306;database=jobtrack;user=root;password=YOUR_MYSQL_PASSWORD"
-```
+- 🔐 Authentification sécurisée (Inscription / Connexion via JWT)
+- 📋 Ajout, modification et suppression des candidatures
+- 🔍 Recherche et filtrage des candidatures
+- 📊 Suivi du statut de chaque candidature
+- 📅 Calendrier des candidatures
+- 📈 Tableau de bord avec statistiques (Analytics)
+- 🗄️ Stockage des données via MySQL
+- 🎨 Interface utilisateur moderne avec React
 
-### Option B — Docker
-From the project root:
-```bash
-docker compose up -d
-```
-Then use password `root` in the backend connection string.
+## 🛠️ Technologies utilisées
 
----
-## 2. Start backend
-Requirements: .NET 8 SDK.
+| Technologie | Utilisation |
+|---|---|
+| C# / ASP.NET Core | API Backend |
+| Entity Framework Core | ORM / Accès aux données |
+| MySQL | Base de données |
+| JWT | Authentification et sécurité |
+| React | Interface utilisateur (Frontend) |
+| Docker / docker-compose | Conteneurisation du projet |
+| Git / GitHub | Gestion des versions |
 
-```bash
+## 🏗️ Architecture
+
+Le projet est structuré en deux parties principales :
+
+- **backend/** : API RESTful développée avec ASP.NET Core, contenant les Controllers, Models, et le DbContext (Entity Framework)
+- **frontend/** : Application React consommant l'API backend
+
+## 🗄️ Base de données
+
+L'application utilise MySQL pour stocker les données relatives aux :
+
+- 👤 Utilisateurs (authentification)
+- 📋 Candidatures (Applications)
+
+🔒 Les informations sensibles de connexion à la base de données ne sont pas publiées dans ce repository.
+
+## 🔐 Sécurité
+
+La protection des informations sensibles constitue un élément important du projet.
+
+Les informations de connexion à la base de données et la clé JWT ne doivent pas être publiées sur GitHub.
+
+Le fichier `appsettings.json` contient uniquement des valeurs d'exemple ; la configuration réelle est définie localement dans un fichier `appsettings.Development.json`, exclu du repository via `.gitignore`.
+
+## 🖥️ Captures d'écran
+
+### 🔐 Connexion
+
+![Connexion](screenshorts/login.png)
+
+### 📝 Création de compte
+
+![Création de compte](screenshorts/create_account.png)
+
+### 📊 Tableau de bord
+
+![Tableau de bord](screenshorts/Dashboard.png)
+
+![Tableau de bord - vue 2](screenshorts/Dashboard2.png)
+
+### 📋 Candidatures
+
+![Candidatures](screenshorts/Applications.png)
+
+### 📅 Calendrier
+
+![Calendrier](screenshorts/Calendar.png)
+
+### 📈 Analytics
+
+![Analytics](screenshorts/Analytics.png)
+
+### ➕ Nouvelle candidature
+
+![Nouvelle candidature](screenshorts/New_App.png)
+
+## 🚀 Installation
+
+### Prérequis
+
+- Windows
+- .NET SDK
+- Node.js
+- MySQL Server
+- Docker (optionnel, via docker-compose)
+
+### 1. Cloner le repository
+git clone https://github.com/SaraBajia/Jobtrack_Application.git
+
+### 2. Configurer le backend
+
 cd backend
 dotnet restore
 dotnet run
-```
 
-Backend API:
-- http://localhost:5167/api/health
-- Swagger: http://localhost:5167/swagger
+### 3. Configurer le frontend
 
-The backend automatically creates missing tables using EF Core `EnsureCreated()`.
-
----
-## 3. Start frontend
-Open a second terminal:
-```bash
 cd frontend
 npm install
 npm run dev
-```
-Open the Vite URL shown in the terminal (usually `http://localhost:5173`).
 
-## Important startup order
-1. Start MySQL
-2. Start backend
-3. Start frontend
-4. Create an account
-5. Login and start adding applications
+### 4. (Optionnel) Lancer avec Docker
 
-## API endpoints
-- POST `/api/auth/register`
-- POST `/api/auth/login`
-- GET `/api/applications`
-- GET `/api/applications/{id}`
-- POST `/api/applications`
-- PUT `/api/applications/{id}`
-- DELETE `/api/applications/{id}`
+docker-compose up
 
-Protected application endpoints require a Bearer JWT token.
+## 📁 Organisation du projet
+
+JobTrack_Application/
+│
+├── backend/
+│   ├── Controllers/
+│   ├── Data/
+│   ├── Models/
+│   ├── Program.cs
+│   └── appsettings.json
+│
+├── frontend/
+│   ├── src/
+│   └── package.json
+│
+├── database/
+│   └── jobtrack_mysql.sql
+│
+├── screenshorts/
+├── docker-compose.yml
+├── .gitignore
+└── README.md
+
+## 🎯 Objectifs du projet
+
+- Centraliser le suivi des candidatures d'emploi dans une interface unique ;
+- Offrir une authentification sécurisée aux utilisateurs ;
+- Faciliter le suivi du statut de chaque candidature ;
+- Proposer une architecture claire séparant backend et frontend ;
+- Appliquer les bonnes pratiques de sécurité (gestion des secrets via variables d'environnement).
+
+## 👩‍💻 Auteur
+
+Sara El Bajia
+
+Projet full-stack de gestion de suivi de candidatures.
+
+⭐ Merci de visiter ce projet !
