@@ -1,0 +1,8 @@
+using JobTrack.Api.Data;using Microsoft.EntityFrameworkCore;using Microsoft.IdentityModel.Tokens;using Microsoft.AspNetCore.Authentication.JwtBearer;using Microsoft.OpenApi.Models;using System.Text;
+var b=WebApplication.CreateBuilder(args);
+b.Services.AddControllers();b.Services.AddEndpointsApiExplorer();b.Services.AddSwaggerGen(o=>{o.AddSecurityDefinition("Bearer",new OpenApiSecurityScheme{Type=SecuritySchemeType.Http,Scheme="bearer",BearerFormat="JWT"});o.AddSecurityRequirement(new OpenApiSecurityRequirement{{new OpenApiSecurityScheme{Reference=new OpenApiReference{Type=ReferenceType.SecurityScheme,Id="Bearer"}},Array.Empty<string>()}});});
+var cs=b.Configuration.GetConnectionString("DefaultConnection")!;b.Services.AddDbContext<JobTrackDbContext>(o=>o.UseMySql(cs,ServerVersion.AutoDetect(cs)));
+var jwt=b.Configuration.GetSection("Jwt");var key=Encoding.UTF8.GetBytes(jwt["Key"]!);b.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(o=>o.TokenValidationParameters=new(){ValidateIssuer=true,ValidateAudience=true,ValidateLifetime=true,ValidateIssuerSigningKey=true,ValidIssuer=jwt["Issuer"],ValidAudience=jwt["Audience"],IssuerSigningKey=new SymmetricSecurityKey(key),ClockSkew=TimeSpan.Zero});b.Services.AddAuthorization();
+b.Services.AddCors(o=>o.AddPolicy("frontend",p=>p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+var app=b.Build();using(var scope=app.Services.CreateScope()){var db=scope.ServiceProvider.GetRequiredService<JobTrackDbContext>();db.Database.EnsureCreated();}
+app.UseSwagger();app.UseSwaggerUI();app.UseCors("frontend");app.UseAuthentication();app.UseAuthorization();app.MapControllers();app.MapGet("/api/health",()=>Results.Ok(new{status="ok",time=DateTime.UtcNow}));app.Run();
