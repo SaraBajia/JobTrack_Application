@@ -59,33 +59,33 @@ Le fichier `appsettings.json` contient uniquement des valeurs d'exemple ; la con
 
 ### 🔐 Connexion
 
-![Connexion](screenshorts/login.png)
+![Connexion](screenshots/login.png)
 
 ### 📝 Création de compte
 
-![Création de compte](screenshorts/create_account.png)
+![Création de compte](screenshots/create_account.png)
 
 ### 📊 Tableau de bord
 
-![Tableau de bord](screenshorts/Dashboard.png)
+![Tableau de bord](screenshots/Dashboard.png)
 
-![Tableau de bord - vue 2](screenshorts/Dashboard2.png)
+![Tableau de bord - vue 2](screenshots/Dashboard2.png)
 
 ### 📋 Candidatures
 
-![Candidatures](screenshorts/Applications.png)
+![Candidatures](screenshots/Applications.png)
 
 ### 📅 Calendrier
 
-![Calendrier](screenshorts/Calendar.png)
+![Calendrier](screenshots/Calendar.png)
 
 ### 📈 Analytics
 
-![Analytics](screenshorts/Analytics.png)
+![Analytics](screenshots/Analytics.png)
 
 ### ➕ Nouvelle candidature
 
-![Nouvelle candidature](screenshorts/New_App.png)
+![Nouvelle candidature](screenshots/New_App.png)
 
 ## 🚀 Installation
 
@@ -138,7 +138,7 @@ JobTrack_Application/
 ├── database/
 │   └── jobtrack_mysql.sql
 │
-├── screenshorts/
+├── screenshots/
 ├── docker-compose.yml
 ├── .gitignore
 └── README.md
